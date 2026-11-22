@@ -2,7 +2,7 @@
 
 **Data source:** Linux `/var/log/auth.log`
 **Level:** Easy
-**Status:** First attempt reviewed
+**Status:** Solved
 
 ## Ticket
 
@@ -30,25 +30,33 @@ Nov  4 10:21:44 web-prod-01 sshd[2601]: Accepted publickey for emma from 10.0.1.
 Nov  4 10:21:44 web-prod-01 sshd[2601]: pam_unix(sshd:session): session opened for user emma(uid=1002) by (uid=0)
 ```
 
-## My first attempt (summary)
+## Analysis
 
-- Symptom: James cannot SSH, error `Permission denied (publickey)`.
-- I found the admin command `chmod -R 777 /home/james` at 09:58:40 and the line `Authentication refused: bad ownership or modes for directory /home/james` at 10:15:03.
-- I thought the attempts from `203.0.113.45` (users `oracle`, `test`, `ubuntu1`) were also James.
-- My fix: change the permission to `655`.
-- Extra finding: I saw the invalid user attempts, but I called them "3 users inside the internal network".
+| Step | Finding |
+|---|---|
+| 1. Symptom | James cannot SSH into `web-prod-01`. Error: `Permission denied (publickey)` |
+| 2. What I saw | 09:58:40 — `admin` ran `sudo chmod -R 777 /home/james`. 10:15:03 and 10:15:31 — James's logins from `10.0.1.40` were refused: `bad ownership or modes for directory /home/james` |
+| 3. Expected | `Accepted publickey for james`, the same way Emma logged in at 10:21:44 |
+| 4. Where it failed | At the key check step, before login (`[preauth]`). The network and SSH service were working |
+| 5. Root cause | James's home folder was made writable by everyone (777). sshd does not trust keys in a folder that other users can change, so it refused James's key |
+| 6. Next step | Fix: `chmod 755 /home/james`, `chmod 700 /home/james/.ssh`, `chmod 600 /home/james/.ssh/authorized_keys`, check `chown -R james:james /home/james`. Prevention: ask the admin why the change was made, never use 777 on home folders, use change approval on production |
 
-## Mistakes I made and lessons
+### How I narrowed it down
 
-| My answer | Correct | What I missed | Lesson |
-|---|---|---|---|
-| James was trying from `203.0.113.45` as `ubuntu1` | James came from `10.0.1.40` as user `james`. `203.0.113.45` is a different, outside IP | I did not match the username + IP + PID on each line | Always connect lines by **username, IP and PID** before deciding who did what |
-| It failed because SSH from an external IP to an internal IP did not work | Network was fine. It failed at the **key check step**: sshd refused to trust James's key because his home folder was world-writable | `[preauth]` + "Authentication refused" means the connection reached sshd, so network is not the problem | If the log shows the server talking to the client, the network is working |
-| Fix: `chmod 655` | `chmod 755 /home/james` (or 700), `chmod 700 ~/.ssh`, `chmod 600 ~/.ssh/authorized_keys`, and check `chown james:james` | On a directory, owner needs **x** to enter it. 6 = rw- (no x). Also `-R` changed every file inside, so `.ssh` must be fixed too | Know what 7/6/5/4 mean and that directories need **x** |
-| No prevention step | Ask the admin why the change was made, never use 777, use change approval for production | I only fixed the problem, not the reason it happened | Every fix needs a "stop it from happening again" step |
-| "3 invalid users in the internal network", Low severity | **One outside IP** guessing 3 usernames on the server (username guessing / brute force). Not related to James. Medium: it failed, but SSH is open to the internet | `203.0.113.x` is not in `10.0.1.0/24` | Check if an IP is inside or outside the network before calling it internal |
-| `777` on James's home = Low | Medium. Any user on the server could change James's `authorized_keys` and log in as him | sshd blocks it for a security reason | A permission problem can also be a security risk |
-| Emma works → I explained the fix | Emma works → SSH service, network and server are fine. The problem is only with **James's account** | The question was about narrowing down, not the fix | Use "who works vs who doesn't" to make the problem smaller |
+- Emma logged in fine → SSH service, network and server are OK → the problem is only with James's account.
+- I matched lines by **username, IP and PID**: PIDs 2512 and 2519 are James (`10.0.1.40`). PIDs 2390, 2392 and 2394 are a different IP (`203.0.113.45`).
+
+## Other finding
+
+| Item | Details |
+|---|---|
+| What | One outside IP `203.0.113.45` tried usernames `oracle`, `test`, `ubuntu1` between 10:02:17 and 10:02:21 |
+| Meaning | Username guessing (brute force). All failed before login because the users do not exist |
+| Related to James? | No |
+| Severity | Medium — the attempts failed, but SSH is open to the internet |
+| Action | Block the IP, allow SSH only from the internal network or VPN, add fail2ban |
+
+Also, the `777` permission is a security risk (Medium): any user on the server could change James's `authorized_keys` and log in as him.
 
 ## How I would explain it
 
@@ -70,3 +78,10 @@ Separate finding: `203.0.113.45` tried invalid usernames (`oracle`, `test`, `ubu
 | Fix | Restore permissions to 755 / 700 / 600 and confirm ownership |
 | Prevention | No 777 on home folders, change approval for production, check with the admin |
 | Other finding | Username guessing from outside IP `203.0.113.45`. Failed. Restrict SSH exposure and add fail2ban |
+
+## Interview answer
+
+**Question:** Emma can log in but James cannot. What does that tell you?
+
+**Answer:** If Emma can log in, the SSH service is running, the network is fine and the server is up. So the problem is only with James's account. I filtered the logs for James and found `bad ownership or modes for directory /home/james`. Before that, the admin had run `chmod -R 777` on his home folder.
+

@@ -19,7 +19,7 @@ Rule: every claim needs a log line as proof.
 
 | # | Case | Data source | Skills | Status |
 |---|---|---|---|---|
-| 01 | [SSH login failure](cases/case-01-ssh-login-failure/README.md) | Linux `auth.log` | sshd, sudo audit, permissions | Reviewed |
+| 01 | [SSH login failure](cases/case-01-ssh-login-failure/README.md) | Linux `auth.log` | sshd, sudo audit, permissions | Solved |
 | 02 | [App cannot reach database](cases/case-02-app-cannot-reach-database/README.md) | tcpdump capture | DNS, TCP handshake, RST | In progress |
 
 ## Reference notes
