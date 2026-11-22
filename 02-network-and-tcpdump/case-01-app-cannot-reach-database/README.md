@@ -1,4 +1,4 @@
-# Case 02: Web App Cannot Reach the Database
+# Case 01: Web App Cannot Reach the Database
 
 **Data source:** tcpdump capture on the app server
 **Level:** Easy to Medium
