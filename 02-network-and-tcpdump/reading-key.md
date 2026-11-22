@@ -10,7 +10,7 @@ tcpdump is a command-line tool that captures network packets going in and out of
 | `-i eth0` / `-i any` | Capture on one interface / on all interfaces |
 | `-c 20` | Stop after 20 packets |
 | `-n` | Do not turn IPs into hostnames |
-| `-nn` | Do not turn IPs or ports into names (shows `443`, not `https`) — best for troubleshooting |
+| `-nn` | Do not turn IPs or ports into names (shows `443`, not `https`). Best for troubleshooting |
 | `-w file.pcap` | Save packets to a file (nothing is printed on screen) |
 | `-r file.pcap` | Read a saved file (no sudo needed) |
 | `-v`, `-vv`, `-vvv` | Show more detail (IP header: TTL, ID, flags, total length) |
@@ -36,7 +36,7 @@ Capturing needs `sudo`. Press `Ctrl+C` to stop.
 
 Use quotes when you use brackets: `"port 5432 and (src 10.0.2.10 or src 10.0.2.20)"`
 
-Good habit: `sudo tcpdump -i eth0 -nn -w case.pcap host <ip>` — capture to a file first, read later.
+Good habit: `sudo tcpdump -i eth0 -nn -w case.pcap host <ip>`. Capture to a file first, read later.
 
 ## 3. Reading a TCP line
 
@@ -52,7 +52,7 @@ Good habit: `sudo tcpdump -i eth0 -nn -w case.pcap host <ip>` — capture to a f
 | `>` | | Direction of the packet |
 | Destination | `10.0.2.20.5432` | IP + port (5432 = PostgreSQL) |
 | `Flags [S]` | | TCP flags (see table below) |
-| `seq` | `2873401123` | Sequence number — which bytes this packet carries |
+| `seq` | `2873401123` | Sequence number: which bytes this packet carries |
 | `ack` | | Next byte I expect from the other side |
 | `win` | `64240` | How much data the sender can receive right now (buffer space) |
 | `options` | `mss, sackOK, TS, wscale` | Extra TCP settings, mostly seen in SYN packets |
@@ -67,7 +67,7 @@ Good habit: `sudo tcpdump -i eth0 -nn -w case.pcap host <ip>` — capture to a f
 | `[.]` | ACK | "Got it" |
 | `[P.]` | PUSH + ACK | "Here is data" |
 | `[F.]` | FIN + ACK | "I am done, closing nicely" |
-| `[R]` / `[R.]` | RST | "Stop — reset this connection" |
+| `[R]` / `[R.]` | RST | "Stop, reset this connection" |
 
 The dot `.` always means ACK.
 
@@ -84,7 +84,7 @@ The dot `.` always means ACK.
 | `mss 1460` | Biggest data chunk this side can receive in one packet |
 | `sackOK` | Selective ACK allowed (resend only the missing pieces) |
 | `TS val / ecr` | Timestamps, used to measure round-trip time |
-| `wscale 7` | Window scaling — lets the window grow beyond 64 KB |
+| `wscale 7` | Window scaling. Lets the window grow beyond 64 KB |
 | `nop` | Padding, ignore it |
 
 ## 4. Extra fields with `-v`
@@ -95,7 +95,7 @@ IP (tos 0x0, ttl 64, id 9792, offset 0, flags [DF], proto TCP (6), length 88)
 
 | Field | Meaning |
 |---|---|
-| `ttl 64` | Hops left before the packet is dropped. Linux starts at 64, Windows at 128 — a hint about the OS |
+| `ttl 64` | Hops left before the packet is dropped. Linux starts at 64, Windows at 128, a hint about the OS |
 | `id` | Used to put fragments back together |
 | `flags [DF]` | Don't Fragment |
 | `proto TCP (6)` | Layer 4 protocol (TCP 6, UDP 17, ICMP 1) |
@@ -118,15 +118,15 @@ IP (tos 0x0, ttl 64, id 9792, offset 0, flags [DF], proto TCP (6), length 88)
 |---|---|
 | `packets captured` | Packets that matched the filter and were shown/saved |
 | `received by filter` | Packets the filter checked |
-| `dropped by kernel` | Packets lost because tcpdump was too slow — if high, your capture is incomplete |
+| `dropped by kernel` | Packets lost because tcpdump was too slow. If high, your capture is incomplete |
 
 ## 7. Ports
 
 | Range | Type |
 |---|---|
-| 0–1023 | Well-known (22 SSH, 53 DNS, 80 HTTP, 443 HTTPS) |
-| 1024–49151 | Registered (3306 MySQL, 5432 PostgreSQL, 5060 SIP) |
-| 49152–65535 | Ephemeral — random client-side ports |
+| 0-1023 | Well-known (22 SSH, 53 DNS, 80 HTTP, 443 HTTPS) |
+| 1024-49151 | Registered (3306 MySQL, 5432 PostgreSQL, 5060 SIP) |
+| 49152-65535 | Ephemeral, random client-side ports |
 
 ## 8. Normal vs problem patterns
 
@@ -134,7 +134,7 @@ IP (tos 0x0, ttl 64, id 9792, offset 0, flags [DF], proto TCP (6), length 88)
 |---|---|
 | `[S]` → `[S.]` → `[.]` → `[P.]` data → `[F.]` | Healthy connection |
 | `[S]` → `[R.]` back from server | Server is up but **nothing is listening on that port** (or it rejects actively) |
-| `[S]` repeated, no reply at all | Packet is being **dropped** — firewall/security group, routing, or host down |
+| `[S]` repeated, no reply at all | Packet is being **dropped**: firewall/security group, routing, or host down |
 | `[S]` → `[S.]` then later `[R]` | Connection made, then reset by the app or a middle device |
 | DNS query with no reply | DNS server not reachable / UDP 53 blocked |
 | DNS reply `NXDomain` | Wrong name or missing record |
@@ -142,6 +142,6 @@ IP (tos 0x0, ttl 64, id 9792, offset 0, flags [DF], proto TCP (6), length 88)
 
 ## Sources I learned from
 
-- Opensource.com — An introduction to using tcpdump at the Linux command line
-- Comparitech — tcpdump cheat sheet
-- Packet Pushers — Masterclass: tcpdump, interpreting output
+- Opensource.com: An introduction to using tcpdump at the Linux command line
+- Comparitech: tcpdump cheat sheet
+- Packet Pushers: Masterclass: tcpdump, interpreting output

@@ -1,4 +1,4 @@
-# Case 01 — Developer Cannot SSH Into Production Server
+# Case 01: Developer Cannot SSH Into Production Server
 
 **Data source:** Linux `/var/log/auth.log`
 **Level:** Easy
@@ -35,7 +35,7 @@ Nov  4 10:21:44 web-prod-01 sshd[2601]: pam_unix(sshd:session): session opened f
 | Step | Finding |
 |---|---|
 | 1. Symptom | James cannot SSH into `web-prod-01`. Error: `Permission denied (publickey)` |
-| 2. What I saw | 09:58:40 — `admin` ran `sudo chmod -R 777 /home/james`. 10:15:03 and 10:15:31 — James's logins from `10.0.1.40` were refused: `bad ownership or modes for directory /home/james` |
+| 2. What I saw | At 09:58:40 `admin` ran `sudo chmod -R 777 /home/james`. At 10:15:03 and 10:15:31 James's logins from `10.0.1.40` were refused: `bad ownership or modes for directory /home/james` |
 | 3. Expected | `Accepted publickey for james`, the same way Emma logged in at 10:21:44 |
 | 4. Where it failed | At the key check step, before login (`[preauth]`). The network and SSH service were working |
 | 5. Root cause | James's home folder was made writable by everyone (777). sshd does not trust keys in a folder that other users can change, so it refused James's key |
@@ -53,7 +53,7 @@ Nov  4 10:21:44 web-prod-01 sshd[2601]: pam_unix(sshd:session): session opened f
 | What | One outside IP `203.0.113.45` tried usernames `oracle`, `test`, `ubuntu1` between 10:02:17 and 10:02:21 |
 | Meaning | Username guessing (brute force). All failed before login because the users do not exist |
 | Related to James? | No |
-| Severity | Medium — the attempts failed, but SSH is open to the internet |
+| Severity | Medium. The attempts failed, but SSH is open to the internet |
 | Action | Block the IP, allow SSH only from the internal network or VPN, add fail2ban |
 
 Also, the `777` permission is a security risk (Medium): any user on the server could change James's `authorized_keys` and log in as him.

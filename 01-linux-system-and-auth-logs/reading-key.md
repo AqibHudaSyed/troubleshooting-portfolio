@@ -44,9 +44,9 @@ If it stops at step 2 or 3, the log says `[preauth]`. The network worked; the pr
 
 | Pattern | Meaning |
 |---|---|
-| `Invalid user X` | Wrong username — stopped at the gate |
+| `Invalid user X` | Wrong username, stopped at the gate |
 | `Failed password for X` (many times) | Right username, guessing the password (brute force) |
-| Many `Failed` then one `Accepted` from the same outside IP | Brute force **worked** — treat as an incident |
+| Many `Failed` then one `Accepted` from the same outside IP | Brute force **worked**. Treat as an incident |
 
 ## 5. sudo line
 
@@ -60,7 +60,7 @@ sudo:  admin : TTY=pts/0 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/chmod 
 | `TTY=pts/0` | Which terminal (pts = remote/SSH session) |
 | `PWD` | Folder they were in |
 | `USER=root` | Whose power the command ran with |
-| `COMMAND` | The exact command — most important for audit |
+| `COMMAND` | The exact command. Most important for audit |
 
 ## 6. Permission numbers (for folders)
 

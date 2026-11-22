@@ -1,8 +1,8 @@
-# Case 02 — Web App Cannot Reach the Database
+# Case 02: Web App Cannot Reach the Database
 
 **Data source:** tcpdump capture on the app server
-**Level:** Easy–Medium
-**Status:** Scenario given — my analysis pending
+**Level:** Easy to Medium
+**Status:** Scenario given, analysis pending
 
 ## Ticket
 

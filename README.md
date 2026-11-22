@@ -1,4 +1,4 @@
-# Troubleshooting Portfolio — Aqib
+# Troubleshooting Portfolio by Aqib
 
 Real-world style troubleshooting cases from general IT work: Linux, networking, DNS, web servers, cloud, Windows and security. In each case I read the logs or packet captures, find the root cause, and explain it so both technical and non-technical people can understand.
 
@@ -11,7 +11,7 @@ Real-world style troubleshooting cases from general IT work: Linux, networking, 
 | 3 | Remove noise | Keep only lines for my user, IP and time. Look for words like `error`, `fail`, `denied`, `refused`, `timeout` |
 | 4 | Group lines | Connect lines by PID, IP, user or request ID |
 | 5 | Build a timeline | Find the **change** first, then the effect |
-| 6 | Compare good vs bad | What works and what fails — the difference is the clue |
+| 6 | Compare good vs bad | What works and what fails. The difference is the clue |
 | 7 | Conclude with proof | Every claim has a log line |
 
 ## How I solve every case
@@ -29,17 +29,17 @@ Real-world style troubleshooting cases from general IT work: Linux, networking, 
 
 | # | Topic | Reading key | Cases |
 |---|---|---|---|
-| 01 | Linux system and auth logs | [Key](01-linux-system-and-auth-logs/reading-key.md) | [Case 01 — SSH login failure](01-linux-system-and-auth-logs/case-01-ssh-login-failure/README.md) ✅ |
-| 02 | Network and tcpdump | [Key](02-network-and-tcpdump/reading-key.md) | [Case 02 — App cannot reach database](02-network-and-tcpdump/case-02-app-cannot-reach-database/README.md) ⏳ |
-| 03 | DNS | — | Coming soon |
-| 04 | Web servers (Nginx / Apache) | — | Coming soon |
-| 05 | Disk, CPU, memory, processes | — | Coming soon |
-| 06 | Services and app / database logs | — | Coming soon |
-| 07 | Firewall and SSL/TLS | — | Coming soon |
-| 08 | Windows Event Logs | — | Coming soon |
-| 09 | Cloud (AWS) | — | Coming soon |
-| 10 | Security alerts (SIEM) | — | Coming soon |
-| 11 | Multi-source incidents | — | Coming soon |
+| 01 | Linux system and auth logs | [Key](01-linux-system-and-auth-logs/reading-key.md) | [Case 01: SSH login failure](01-linux-system-and-auth-logs/case-01-ssh-login-failure/README.md) ✅ |
+| 02 | Network and tcpdump | [Key](02-network-and-tcpdump/reading-key.md) | [Case 02: App cannot reach database](02-network-and-tcpdump/case-02-app-cannot-reach-database/README.md) ⏳ |
+| 03 | DNS | Coming soon | Coming soon |
+| 04 | Web servers (Nginx / Apache) | Coming soon | Coming soon |
+| 05 | Disk, CPU, memory, processes | Coming soon | Coming soon |
+| 06 | Services and app / database logs | Coming soon | Coming soon |
+| 07 | Firewall and SSL/TLS | Coming soon | Coming soon |
+| 08 | Windows Event Logs | Coming soon | Coming soon |
+| 09 | Cloud (AWS) | Coming soon | Coming soon |
+| 10 | Security alerts (SIEM) | Coming soon | Coming soon |
+| 11 | Multi-source incidents | Coming soon | Coming soon |
 
 ## About the cases
 
