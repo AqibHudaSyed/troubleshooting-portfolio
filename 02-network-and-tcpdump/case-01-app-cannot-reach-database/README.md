@@ -2,7 +2,7 @@
 
 **Data source:** tcpdump capture on the app server
 **Level:** Easy to Medium
-**Status:** Scenario given, analysis pending
+**Status:** Solved
 
 ## Ticket
 
@@ -34,14 +34,70 @@ $ sudo tcpdump -i eth0 -nn "host 10.0.2.20 or port 53"
 0 packets dropped by kernel
 ```
 
-## My analysis
+## Analysis
 
-_To be added after review._
+| Step | Finding |
+|---|---|
+| 1. Symptom | The website shows "500 Internal Server Error" since about 9 AM. The app log says `could not connect to database db.internal:5432` |
+| 2. What I saw | At 10:41:02.101512 and 10:41:03.104417 app-01 sent SYN to db-01 on port 5432. Each time db-01 replied straight away with `[R.]` (RST) at 10:41:02.101903 and 10:41:03.104788 |
+| 3. Expected | A normal TCP handshake on port 5432: `[S]` → `[S.]` → `[.]`, then data |
+| 4. Where it failed | On db-01, port 5432, at the very first step of the TCP connection |
+| 5. Root cause | PostgreSQL was not listening on port 5432 after last night's patching and reboot. The reboot was the trigger. The service most likely did not start again |
+| 6. Next step | Fix: start PostgreSQL and enable it at boot. Prevention: after every patch or reboot, run a short check list (service status, port listening, app health) before closing the change |
 
-## Mistakes I made and lessons
+### How I narrowed it down
 
-_To be added after review._
+| Check | Proof | Result |
+|---|---|---|
+| Is DNS working? | 10:41:02.101034 `4521 1/0/0 A 10.0.2.20` | Yes. `db.internal` gives the right IP |
+| Is db-01 up and the network fine? | Port 22: `[S]` → `[S.]` → `[.]` → `[P.]` at 10:41:05 | Yes. Full handshake and SSH banner |
+| What happens on port 5432? | `[S]` → `[R.]` within half a millisecond | db-01 refuses. Nothing is listening on 5432 |
+| What changed? | Change log: patching and reboot of db-01 at 11 PM | The problem started after this |
+
+### RST vs no reply
+
+| In the capture | Meaning | What I check |
+|---|---|---|
+| `[S]` → `[S.]` | Port is open, service is running | The problem is higher up (app, password, query) |
+| `[S]` → `[R.]` straight away | Host is up, network is fine, nothing is listening on the port | Is the service running? Is it listening on the right IP and port? |
+| `[S]` repeated, no reply | Packet is dropped on the way | Firewall, Security Group, NACL, routing, or host down |
+
+### Commands to confirm on db-01
+
+```
+sudo ss -tlnp | grep 5432
+sudo systemctl status postgresql
+sudo journalctl -u postgresql --since "yesterday 23:00"
+```
+
+Fix:
+
+```
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
+```
 
 ## How I would explain it
 
-_To be added after review._
+**Manager (2 lines):**
+The website is down because the database did not come back after last night's maintenance. The DB team is starting it now, and from now on we will check that everything is running again after every maintenance.
+
+**Technical team:**
+DNS is fine: `db.internal` resolves to 10.0.2.20. The TCP handshake on port 22 works, so the host and network are fine. Every SYN to port 5432 gets an instant RST, so nothing is listening on 5432. This started after the 11 PM patch reboot. Check with `ss -tlnp | grep 5432` and `systemctl status postgresql`. Fix: start the service and enable it at boot.
+
+**Written report:**
+
+| Field | Details |
+|---|---|
+| Summary | Website returned 500 errors because the app could not connect to the database |
+| Impact | Website down for all users from about 9 AM |
+| Timeline | 11 PM: db-01 patched and rebooted. About 9 AM: 500 errors reported. 10:41: capture shows RST from db-01 on port 5432 |
+| Root cause | PostgreSQL was not listening on port 5432 after the reboot |
+| Fix | Start PostgreSQL and enable it at boot |
+| Prevention | Post-change check list: service running, port listening, app health check. Add monitoring on port 5432 |
+
+## Interview answer
+
+**Question:** What is the difference between getting an RST and getting no reply, and what do you check in each case?
+
+**Answer:** An RST means my packet reached the server and the server said no, because nothing is listening on that port. So I check on the server if the service is running and which port it is listening on. No reply means the packet was dropped on the way. So I check firewalls, Security Groups, routing, and if the server is up.
