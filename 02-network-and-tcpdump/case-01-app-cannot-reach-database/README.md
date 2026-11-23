@@ -100,4 +100,4 @@ DNS is fine: `db.internal` resolves to 10.0.2.20. The TCP handshake on port 22 w
 
 **Question:** What is the difference between getting an RST and getting no reply, and what do you check in each case?
 
-**Answer:** An RST means my packet reached the server and the server said no, because nothing is listening on that port. So I check on the server if the service is running and which port it is listening on. No reply means the packet was dropped on the way. So I check firewalls, Security Groups, routing, and if the server is up.
+**Answer:** RST means the server is up and my packet reached it, but the server reset the connection. In that case I check on the server side if anything is listening on that port and if the service is up. No reply means the packet is getting dropped and the request is not even reaching the server. In that case I check the firewall, VPN and Security Group.
