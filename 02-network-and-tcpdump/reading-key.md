@@ -141,8 +141,22 @@ IP (tos 0x0, ttl 64, id 9792, offset 0, flags [DF], proto TCP (6), length 88)
 | DNS reply `NXDomain` | Wrong name or missing record |
 | `ICMP host unreachable` | A router says it cannot reach the host |
 
+## 9. What to focus on and what to ignore
+
+| Priority | Field | Why |
+|---|---|---|
+| High | Flags | Tells if the connection was made, refused, or dropped. Most answers are here |
+| High | Source and destination IP + port | Who is talking to whom, and on which port |
+| High | Time | Did a reply come, and how fast |
+| Medium | `length` | Was data sent, or only control packets |
+| Low | `seq`, `ack` | Useful for packet loss and retransmission problems |
+| Ignore for now | `win`, `mss`, `sackOK`, `TS val`, `ecr`, `nop`, `wscale` | Needed only for slow transfer or performance problems |
+
 ## Sources I learned from
 
-- Opensource.com: An introduction to using tcpdump at the Linux command line
-- Comparitech: tcpdump cheat sheet
-- Packet Pushers: Masterclass: tcpdump, interpreting output
+| Source | Link |
+|---|---|
+| Opensource.com: An introduction to using tcpdump at the Linux command line | https://opensource.com/article/18/10/introduction-tcpdump |
+| Comparitech: tcpdump cheat sheet | https://www.comparitech.com/net-admin/tcpdump-cheat-sheet/ |
+| Packet Pushers: Masterclass, tcpdump, interpreting output | https://packetpushers.net/blog/masterclass-tcpdump-interpreting-output/ |
+| tcpdump manual page (official) | https://www.man7.org/linux/man-pages/man1/tcpdump.1.html |

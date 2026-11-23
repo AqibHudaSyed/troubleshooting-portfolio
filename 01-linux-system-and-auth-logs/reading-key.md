@@ -72,3 +72,23 @@ sudo:  admin : TTY=pts/0 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/chmod 
 | 0 | `---` | Nothing |
 
 SSH safe values: home `755` or `700`, `~/.ssh` `700`, `authorized_keys` `600`.
+
+## 7. What to focus on and what to ignore
+
+| Priority | Field | Why |
+|---|---|---|
+| High | Message | What happened: accepted, failed, invalid, refused |
+| High | Username + source IP | Who tried, and from where (inside or outside the network) |
+| High | Time | What happened first. Find the change before the problem |
+| High | PID | Connects lines that belong to the same connection |
+| Medium | `COMMAND` in sudo lines | Shows exactly what an admin changed |
+| Low | Client port (`port 60218`) | Random number picked by the client. Rarely needed |
+| Ignore for now | `ssh2`, key fingerprint (`SHA256:...`), `uid=`, `pam_unix(...)` part | Only needed in deep audits, for example to prove which key was used |
+
+## Sources I learned from
+
+| Source | Link |
+|---|---|
+| sshd_config manual (see `StrictModes`, `PasswordAuthentication`) | https://man.openbsd.org/sshd_config |
+| Ubuntu Server docs: OpenSSH server | https://documentation.ubuntu.com/server/how-to/security/openssh-server |
+
