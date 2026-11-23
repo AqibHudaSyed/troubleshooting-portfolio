@@ -60,14 +60,15 @@ Good habit: `sudo tcpdump -i eth0 -nn -w case.pcap host <ip>`. Capture to a file
 
 ### TCP flags
 
-| Flag | Name | Meaning in simple words |
-|---|---|---|
-| `[S]` | SYN | "I want to connect" |
-| `[S.]` | SYN-ACK | "OK, I accept" |
-| `[.]` | ACK | "Got it" |
-| `[P.]` | PUSH + ACK | "Here is data" |
-| `[F.]` | FIN + ACK | "I am done, closing nicely" |
-| `[R]` / `[R.]` | RST | "Stop, reset this connection" |
+| Flag | Short name | Full name | Meaning in simple words |
+|---|---|---|---|
+| `[S]` | SYN | Synchronize | "I want to start a connection" |
+| `[S.]` | SYN-ACK | Synchronize + Acknowledge | "OK, I accept your connection" |
+| `[.]` | ACK | Acknowledge | "I got your packet" |
+| `[P.]` | PSH-ACK | Push + Acknowledge | "Here is some data, please use it now" |
+| `[F.]` | FIN-ACK | Finish + Acknowledge | "I am done, let's close nicely" |
+| `[R]` / `[R.]` | RST / RST-ACK | Reset | "Stop, I am not accepting this connection" |
+| `[U]` | URG | Urgent | "This data is urgent" (rare) |
 
 The dot `.` always means ACK.
 
