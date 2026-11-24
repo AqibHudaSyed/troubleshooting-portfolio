@@ -54,6 +54,9 @@ What I have practiced so far. Updated after every case.
 | `dig`, `nslookup` | ⬜ |
 | `df`, `du`, `free`, `top` | ⬜ |
 | `systemctl status` | 🟡 read only |
+| tcpdump capture to file (`-w`, `-r`, `-C`, `-W`, filters) | 🟡 read only |
+| `nohup`, `&`, `jobs`, `kill` (background jobs) | ⬜ |
+| `scp`, `rsync` (copy files between servers) | ⬜ |
 
 ## Other practice
 
