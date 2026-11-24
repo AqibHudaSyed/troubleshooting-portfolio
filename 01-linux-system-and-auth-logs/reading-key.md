@@ -73,7 +73,43 @@ sudo:  admin : TTY=pts/0 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/chmod 
 
 SSH safe values: home `755` or `700`, `~/.ssh` `700`, `authorized_keys` `600`.
 
-## 7. What to focus on and what to ignore
+## 7. Where Linux keeps its logs
+
+| What | Ubuntu / Debian | RHEL / CentOS / Rocky | Notes |
+|---|---|---|---|
+| Logins, SSH, sudo, su, new users | `/var/log/auth.log` | `/var/log/secure` | First place for any login problem |
+| General system messages | `/var/log/syslog` | `/var/log/messages` | Services starting and stopping, most other messages |
+| Kernel messages | `/var/log/kern.log` | in `/var/log/messages` | Also `dmesg`. Disk errors, out of memory kills |
+| Cron jobs | in `/var/log/syslog` | `/var/log/cron` | `grep CRON` on Ubuntu |
+| Package installs | `/var/log/dpkg.log`, `/var/log/apt/` | `/var/log/dnf.log` (`yum.log` on older) | What was installed or updated, and when |
+| Boot | `/var/log/boot.log` | `/var/log/boot.log` | Problems during start up |
+| Audit (if auditd is on) | `/var/log/audit/audit.log` | `/var/log/audit/audit.log` | Detailed security events |
+| Nginx | `/var/log/nginx/access.log`, `error.log` | same | |
+| Apache | `/var/log/apache2/` | `/var/log/httpd/` | Different folder name |
+| MySQL / PostgreSQL | `/var/log/mysql/`, `/var/log/postgresql/` | `/var/log/mysqld.log`, `/var/lib/pgsql/data/log/` | Depends on version and setup |
+| Firewall | `/var/log/ufw.log` | in `/var/log/messages` (firewalld) | |
+| fail2ban | `/var/log/fail2ban.log` | same | Which IPs were banned |
+
+### Login history files (binary, read them with a command)
+
+| File | Command | Shows |
+|---|---|---|
+| `/var/log/wtmp` | `last` | Successful logins and reboots |
+| `/var/log/btmp` | `sudo lastb` | Failed logins |
+| `/var/log/lastlog` | `lastlog` | Last login time of every user |
+
+### systemd journal
+
+Most modern systems also keep logs in the systemd journal. Read them with `journalctl`:
+
+| Command | Shows |
+|---|---|
+| `journalctl -u ssh` (Ubuntu) / `-u sshd` (RHEL) | Logs of one service |
+| `journalctl -f` | Live logs, like `tail -f` |
+| `journalctl --since "1 hour ago"` | Logs from a time window |
+| `journalctl -p err` | Only errors |
+
+## 8. What to focus on and what to ignore
 
 | Priority | Field | Why |
 |---|---|---|
