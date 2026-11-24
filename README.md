@@ -41,6 +41,10 @@ Real-world style troubleshooting cases from general IT work: Linux, networking, 
 | 10 | Security alerts (SIEM) | Coming soon | Coming soon |
 | 11 | Multi-source incidents | Coming soon | Coming soon |
 
+## Progress
+
+See [coverage.md](coverage.md) for what I have practiced so far.
+
 ## About the cases
 
 All scenarios, names, IP addresses and hostnames are made up for practice. IPs come from documentation and private ranges.
