@@ -6,20 +6,22 @@ What I have practiced so far. Updated after every case.
 
 ## Topics
 
+Core plan (about 1 hour a day, until 20 Dec): 21 cases. "later" = extra cases after that.
+
 | # | Topic | Case 1 | Case 2 | Case 3 | Case 4 |
 |---|---|---|---|---|---|
-| 01 | Linux system and auth logs | ✅ | ✅ | ⬜ | ⬜ |
-| 02 | Network and tcpdump | ✅ | ✅ | ⬜ | ⬜ |
-| 03 | DNS | ⬜ | ⬜ | ⬜ | ⬜ |
-| 04 | Web servers and HTTP | ⬜ | ⬜ | ⬜ | ⬜ |
-| 05 | Disk, CPU, memory, processes | ⬜ | ⬜ | ⬜ | ⬜ |
-| 06 | Services, cron, app and DB logs | ⬜ | ⬜ | ⬜ | ⬜ |
-| 07 | Firewall and SSL/TLS | ⬜ | ⬜ | ⬜ | ⬜ |
-| 08 | Windows and Active Directory | ⬜ | ⬜ | ⬜ | ⬜ |
-| 09 | IT support basics (DHCP, VPN, email) | ⬜ | ⬜ | ⬜ | ⬜ |
-| 10 | AWS cloud | ⬜ | ⬜ | ⬜ | ⬜ |
-| 11 | Security alerts (SIEM) | ⬜ | ⬜ | ⬜ | ⬜ |
-| 12 | Multi-source incidents | ⬜ 5 cases | | | |
+| 01 | Linux system and auth logs | ✅ | ✅ | ⬜ | later |
+| 02 | Network and tcpdump | ✅ | ✅ | ⬜ | later |
+| 03 | DNS | ⬜ | ⬜ | later | later |
+| 04 | Web servers and HTTP | ⬜ | ⬜ | later | later |
+| 05 | Disk, CPU, memory, processes | ⬜ | ⬜ | later | later |
+| 06 | Services, cron, app and DB logs | ⬜ | ⬜ | later | later |
+| 07 | Firewall and SSL/TLS | ⬜ | ⬜ | later | later |
+| 08 | Windows and Active Directory | ⬜ | later | later | later |
+| 09 | IT support basics (DHCP, VPN, email) | ⬜ | later | later | later |
+| 10 | AWS cloud | ⬜ | later | later | later |
+| 11 | Security alerts (SIEM) | ⬜ | later | later | later |
+| 12 | Multi-source incidents | ⬜ | later | later | later |
 
 ## Logs
 
