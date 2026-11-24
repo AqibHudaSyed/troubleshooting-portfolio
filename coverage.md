@@ -6,22 +6,25 @@ What I have practiced so far. Updated after every case.
 
 ## Topics
 
-Core plan (about 1 hour a day, until 20 Dec): 21 cases. "later" = extra cases after that.
+Goal: 50 cases, about 1 hour a day.
+
+- **Phase 1** (until about 20 Dec): 21 cases, so every topic is covered at least once.
+- **Phase 2** (after that): the remaining cases, marked "Phase 2" below, to go deeper into each topic.
 
 | # | Topic | Case 1 | Case 2 | Case 3 | Case 4 |
 |---|---|---|---|---|---|
-| 01 | Linux system and auth logs | ✅ | ✅ | ⬜ | later |
-| 02 | Network and tcpdump | ✅ | ✅ | ⬜ | later |
-| 03 | DNS | ⬜ | ⬜ | later | later |
-| 04 | Web servers and HTTP | ⬜ | ⬜ | later | later |
-| 05 | Disk, CPU, memory, processes | ⬜ | ⬜ | later | later |
-| 06 | Services, cron, app and DB logs | ⬜ | ⬜ | later | later |
-| 07 | Firewall and SSL/TLS | ⬜ | ⬜ | later | later |
-| 08 | Windows and Active Directory | ⬜ | later | later | later |
-| 09 | IT support basics (DHCP, VPN, email) | ⬜ | later | later | later |
-| 10 | AWS cloud | ⬜ | later | later | later |
-| 11 | Security alerts (SIEM) | ⬜ | later | later | later |
-| 12 | Multi-source incidents | ⬜ | later | later | later |
+| 01 | Linux system and auth logs | ✅ | ✅ | ⬜ | Phase 2 |
+| 02 | Network and tcpdump | ✅ | ✅ | ⬜ | Phase 2 |
+| 03 | DNS | ⬜ | ⬜ | Phase 2 | Phase 2 |
+| 04 | Web servers and HTTP | ⬜ | ⬜ | Phase 2 | Phase 2 |
+| 05 | Disk, CPU, memory, processes | ⬜ | ⬜ | Phase 2 | Phase 2 |
+| 06 | Services, cron, app and DB logs | ⬜ | ⬜ | Phase 2 | Phase 2 |
+| 07 | Firewall and SSL/TLS | ⬜ | ⬜ | Phase 2 | Phase 2 |
+| 08 | Windows and Active Directory | ⬜ | Phase 2 | Phase 2 | Phase 2 |
+| 09 | IT support basics (DHCP, VPN, email) | ⬜ | Phase 2 | Phase 2 | Phase 2 |
+| 10 | AWS cloud | ⬜ | Phase 2 | Phase 2 | Phase 2 |
+| 11 | Security alerts (SIEM) | ⬜ | Phase 2 | Phase 2 | Phase 2 |
+| 12 | Multi-source incidents | ⬜ | Phase 2 | Phase 2 | Phase 2 |
 
 ## Logs
 
