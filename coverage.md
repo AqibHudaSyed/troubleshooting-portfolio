@@ -6,7 +6,7 @@ What I have practiced so far. Updated after every case.
 
 ## Topics
 
-| # | Topic | Case 1 (guided) | Case 2 (guided) | Case 3 (live lab) | Case 4 (live lab) |
+| # | Topic | Case 1 | Case 2 | Case 3 | Case 4 |
 |---|---|---|---|---|---|
 | 01 | Linux system and auth logs | ✅ | ✅ | ⬜ | ⬜ |
 | 02 | Network and tcpdump | ✅ | ✅ | ⬜ | ⬜ |
