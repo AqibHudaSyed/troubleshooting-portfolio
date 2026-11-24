@@ -1,0 +1,89 @@
+Nov 24 02:00:01 web-prod-02 CRON[3107]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Nov 24 02:00:01 web-prod-02 CRON[3107]: pam_unix(cron:session): session closed for user root
+Nov 24 02:10:14 web-prod-02 sshd[3111]: Accepted publickey for olivia from 10.0.1.25 port 52114 ssh2: ED25519 SHA256:Qa7tZ...
+Nov 24 02:10:14 web-prod-02 sshd[3111]: pam_unix(sshd:session): session opened for user olivia(uid=1001) by (uid=0)
+Nov 24 02:10:14 web-prod-02 systemd-logind[612]: New session 41 of user olivia.
+Nov 24 02:12:30 web-prod-02 sudo:   olivia : TTY=pts/0 ; PWD=/home/olivia ; USER=root ; COMMAND=/usr/bin/systemctl restart nginx
+Nov 24 02:12:30 web-prod-02 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by olivia(uid=1001)
+Nov 24 02:12:31 web-prod-02 sudo: pam_unix(sudo:session): session closed for user root
+Nov 24 02:15:02 web-prod-02 sshd[3111]: pam_unix(sshd:session): session closed for user olivia
+Nov 24 02:15:02 web-prod-02 systemd-logind[612]: Session 41 logged out. Waiting for processes to exit.
+Nov 24 02:30:05 web-prod-02 sshd[3119]: Accepted publickey for deploy from 10.0.1.30 port 44120 ssh2: ED25519 SHA256:Dp2kL...
+Nov 24 02:30:05 web-prod-02 sshd[3119]: pam_unix(sshd:session): session opened for user deploy(uid=1002) by (uid=0)
+Nov 24 02:30:41 web-prod-02 sshd[3119]: pam_unix(sshd:session): session closed for user deploy
+Nov 24 03:00:01 web-prod-02 CRON[3121]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Nov 24 03:00:01 web-prod-02 CRON[3121]: pam_unix(cron:session): session closed for user root
+Nov 24 03:02:10 web-prod-02 sshd[3124]: Invalid user test from 198.51.100.23 port 57559
+Nov 24 03:02:10 web-prod-02 sshd[3124]: Failed password for invalid user test from 198.51.100.23 port 57559 ssh2
+Nov 24 03:02:17 web-prod-02 sshd[3127]: Invalid user guest from 198.51.100.23 port 51982
+Nov 24 03:02:17 web-prod-02 sshd[3127]: Failed password for invalid user guest from 198.51.100.23 port 51982 ssh2
+Nov 24 03:02:24 web-prod-02 sshd[3129]: Invalid user user from 198.51.100.23 port 56627
+Nov 24 03:02:24 web-prod-02 sshd[3129]: Failed password for invalid user user from 198.51.100.23 port 56627 ssh2
+Nov 24 03:03:31 web-prod-02 sshd[3134]: Invalid user ftpuser from 198.51.100.23 port 41228
+Nov 24 03:03:31 web-prod-02 sshd[3134]: Failed password for invalid user ftpuser from 198.51.100.23 port 41228 ssh2
+Nov 24 03:03:38 web-prod-02 sshd[3137]: Invalid user oracle from 198.51.100.23 port 54209
+Nov 24 03:03:38 web-prod-02 sshd[3137]: Failed password for invalid user oracle from 198.51.100.23 port 54209 ssh2
+Nov 24 03:03:45 web-prod-02 sshd[3145]: Invalid user admin1 from 198.51.100.23 port 42289
+Nov 24 03:03:45 web-prod-02 sshd[3145]: Failed password for invalid user admin1 from 198.51.100.23 port 42289 ssh2
+Nov 24 03:06:15 web-prod-02 sshd[3150]: Invalid user support from 203.0.113.77 port 42972
+Nov 24 03:06:15 web-prod-02 sshd[3150]: Failed password for invalid user support from 203.0.113.77 port 42972 ssh2
+Nov 24 03:06:24 web-prod-02 sshd[3158]: Invalid user pi from 203.0.113.77 port 41936
+Nov 24 03:06:24 web-prod-02 sshd[3158]: Failed password for invalid user pi from 203.0.113.77 port 41936 ssh2
+Nov 24 03:06:33 web-prod-02 sshd[3161]: Invalid user test from 203.0.113.77 port 47315
+Nov 24 03:06:33 web-prod-02 sshd[3161]: Failed password for invalid user test from 203.0.113.77 port 47315 ssh2
+Nov 24 03:08:05 web-prod-02 sshd[3163]: Failed password for root from 198.51.100.23 port 58910 ssh2
+Nov 24 03:08:09 web-prod-02 sshd[3171]: Failed password for root from 198.51.100.23 port 41624 ssh2
+Nov 24 03:08:13 web-prod-02 sshd[3176]: Failed password for root from 198.51.100.23 port 41526 ssh2
+Nov 24 03:08:17 web-prod-02 sshd[3180]: Failed password for root from 198.51.100.23 port 49489 ssh2
+Nov 24 03:08:21 web-prod-02 sshd[3188]: Failed password for root from 198.51.100.23 port 44726 ssh2
+Nov 24 03:08:25 web-prod-02 sshd[3191]: Failed password for root from 198.51.100.23 port 58707 ssh2
+Nov 24 03:08:29 web-prod-02 sshd[3197]: Failed password for root from 198.51.100.23 port 58358 ssh2
+Nov 24 03:08:33 web-prod-02 sshd[3201]: Failed password for root from 198.51.100.23 port 43376 ssh2
+Nov 24 03:08:37 web-prod-02 sshd[3206]: Failed password for root from 198.51.100.23 port 52202 ssh2
+Nov 24 03:08:41 web-prod-02 sshd[3209]: Failed password for root from 198.51.100.23 port 57948 ssh2
+Nov 24 03:08:45 web-prod-02 sshd[3212]: Failed password for root from 198.51.100.23 port 58493 ssh2
+Nov 24 03:08:49 web-prod-02 sshd[3214]: Failed password for root from 198.51.100.23 port 60283 ssh2
+Nov 24 03:08:53 web-prod-02 sshd[3219]: Failed password for root from 198.51.100.23 port 56266 ssh2
+Nov 24 03:08:57 web-prod-02 sshd[3227]: Failed password for root from 198.51.100.23 port 50293 ssh2
+Nov 24 03:12:20 web-prod-02 CRON[3236]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Nov 24 03:12:20 web-prod-02 CRON[3236]: pam_unix(cron:session): session closed for user root
+Nov 24 03:13:02 web-prod-02 sshd[3245]: Invalid user ubuntu from 203.0.113.77 port 51848
+Nov 24 03:13:02 web-prod-02 sshd[3245]: Failed password for invalid user ubuntu from 203.0.113.77 port 51848 ssh2
+Nov 24 03:13:11 web-prod-02 sshd[3251]: Invalid user admin from 203.0.113.77 port 48140
+Nov 24 03:13:11 web-prod-02 sshd[3251]: Failed password for invalid user admin from 203.0.113.77 port 48140 ssh2
+Nov 24 03:15:03 web-prod-02 sshd[3255]: Failed password for deploy from 198.51.100.23 port 47998 ssh2
+Nov 24 03:15:43 web-prod-02 sshd[3258]: Failed password for deploy from 198.51.100.23 port 58822 ssh2
+Nov 24 03:16:23 web-prod-02 sshd[3264]: Failed password for deploy from 198.51.100.23 port 57209 ssh2
+Nov 24 03:17:03 web-prod-02 sshd[3273]: Failed password for deploy from 198.51.100.23 port 51255 ssh2
+Nov 24 03:17:43 web-prod-02 sshd[3282]: Failed password for deploy from 198.51.100.23 port 49435 ssh2
+Nov 24 03:18:23 web-prod-02 sshd[3285]: Failed password for deploy from 198.51.100.23 port 43868 ssh2
+Nov 24 03:19:03 web-prod-02 sshd[3293]: Failed password for deploy from 198.51.100.23 port 45405 ssh2
+Nov 24 03:19:43 web-prod-02 sshd[3300]: Failed password for deploy from 198.51.100.23 port 44980 ssh2
+Nov 24 03:20:23 web-prod-02 sshd[3309]: Failed password for deploy from 198.51.100.23 port 53818 ssh2
+Nov 24 03:21:44 web-prod-02 sshd[3311]: Accepted password for deploy from 198.51.100.23 port 42543 ssh2
+Nov 24 03:21:44 web-prod-02 sshd[3311]: pam_unix(sshd:session): session opened for user deploy(uid=1002) by (uid=0)
+Nov 24 03:21:44 web-prod-02 systemd-logind[612]: New session 44 of user deploy.
+Nov 24 03:22:10 web-prod-02 sudo:   deploy : TTY=pts/1 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/cat /etc/shadow
+Nov 24 03:22:10 web-prod-02 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by deploy(uid=1002)
+Nov 24 03:22:10 web-prod-02 sudo: pam_unix(sudo:session): session closed for user root
+Nov 24 03:22:58 web-prod-02 sudo:   deploy : TTY=pts/1 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/sbin/useradd -m -s /bin/bash backup2
+Nov 24 03:22:58 web-prod-02 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by deploy(uid=1002)
+Nov 24 03:22:58 web-prod-02 useradd[4211]: new group: name=backup2, GID=1004
+Nov 24 03:22:58 web-prod-02 useradd[4211]: new user: name=backup2, UID=1004, GID=1004, home=/home/backup2, shell=/bin/bash, from=/dev/pts/1
+Nov 24 03:22:58 web-prod-02 sudo: pam_unix(sudo:session): session closed for user root
+Nov 24 03:23:20 web-prod-02 sudo:   deploy : TTY=pts/1 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/passwd backup2
+Nov 24 03:23:20 web-prod-02 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by deploy(uid=1002)
+Nov 24 03:23:31 web-prod-02 passwd[4219]: pam_unix(passwd:chauthtok): password changed for backup2
+Nov 24 03:23:31 web-prod-02 sudo: pam_unix(sudo:session): session closed for user root
+Nov 24 03:23:52 web-prod-02 sudo:   deploy : TTY=pts/1 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/sbin/usermod -aG sudo backup2
+Nov 24 03:23:52 web-prod-02 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by deploy(uid=1002)
+Nov 24 03:23:52 web-prod-02 usermod[4225]: add 'backup2' to group 'sudo'
+Nov 24 03:23:52 web-prod-02 sudo: pam_unix(sudo:session): session closed for user root
+Nov 24 03:25:07 web-prod-02 sshd[3311]: pam_unix(sshd:session): session closed for user deploy
+Nov 24 03:25:07 web-prod-02 systemd-logind[612]: Session 44 logged out. Waiting for processes to exit.
+Nov 24 03:27:39 web-prod-02 sshd[3318]: Accepted password for backup2 from 198.51.100.23 port 51145 ssh2
+Nov 24 03:27:39 web-prod-02 sshd[3318]: pam_unix(sshd:session): session opened for user backup2(uid=1004) by (uid=0)
+Nov 24 03:27:39 web-prod-02 systemd-logind[612]: New session 45 of user backup2.
+Nov 24 03:31:12 web-prod-02 sshd[3318]: pam_unix(sshd:session): session closed for user backup2
+Nov 24 03:36:01 web-prod-02 CRON[3325]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Nov 24 03:36:01 web-prod-02 CRON[3325]: pam_unix(cron:session): session closed for user root

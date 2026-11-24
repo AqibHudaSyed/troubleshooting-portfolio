@@ -29,7 +29,7 @@ Real-world style troubleshooting cases from general IT work: Linux, networking, 
 
 | # | Topic | Reading key | Cases |
 |---|---|---|---|
-| 01 | Linux system and auth logs | [Key](01-linux-system-and-auth-logs/reading-key.md) | [Case 01: SSH login failure](01-linux-system-and-auth-logs/case-01-ssh-login-failure/README.md) ✅ |
+| 01 | Linux system and auth logs | [Key](01-linux-system-and-auth-logs/reading-key.md) | [Case 01: SSH login failure](01-linux-system-and-auth-logs/case-01-ssh-login-failure/README.md) ✅<br>[Case 02: Brute force and a new user](01-linux-system-and-auth-logs/case-02-brute-force-and-suspicious-login/README.md) ⏳ |
 | 02 | Network and tcpdump | [Key](02-network-and-tcpdump/reading-key.md) | [Case 01: App cannot reach database](02-network-and-tcpdump/case-01-app-cannot-reach-database/README.md) ✅<br>[Case 02: API timeout, no reply](02-network-and-tcpdump/case-02-api-timeout-no-reply/README.md) ✅ |
 | 03 | DNS | Coming soon | Coming soon |
 | 04 | Web servers (Nginx / Apache) | Coming soon | Coming soon |
