@@ -2,28 +2,17 @@
 
 Real-world style troubleshooting cases from general IT work: Linux, networking, DNS, web servers, cloud, Windows and security. In each case I read the logs or packet captures, find the root cause, and explain it so both technical and non-technical people can understand.
 
-## How I read any log
+## How I troubleshoot
 
-| # | Step | What I do |
+I use the same 5 questions for every problem.
+
+| # | Question | What I look for |
 |---|---|---|
-| 1 | Set the scope | What is the problem, when did it start, which server or user |
-| 2 | Know the line format | Where is the time, the source and the message |
-| 3 | Remove noise | Keep only lines for my user, IP and time. Look for words like `error`, `fail`, `denied`, `refused`, `timeout` |
-| 4 | Group lines | Connect lines by PID, IP, user or request ID |
-| 5 | Build a timeline | Find the **change** first, then the effect |
-| 6 | Compare good vs bad | What works and what fails. The difference is the clue |
-| 7 | Conclude with proof | Every claim has a log line |
-
-## How I solve every case
-
-| Step | Question I ask |
-|---|---|
-| 1. Symptom | What problem does the user or system see? |
-| 2. What I saw | What do the logs show exactly (time + line)? |
-| 3. Expected | What should happen when everything is normal? |
-| 4. Where it failed | At which step or component did it break? |
-| 5. Why (root cause) | What is the real reason? Which line proves it? |
-| 6. Next step | How to fix it, and how to stop it from happening again |
+| 1 | What broke? | The symptom: what, who, when, where |
+| 2 | What changed? | The change, or the first bad line in the log |
+| 3 | What is different? | What works vs what fails. The difference is the clue |
+| 4 | What is the proof? | One log line for every claim. No guesses |
+| 5 | What next? | Fix it now, and stop it from happening again. For a security incident, contain it first |
 
 ## Topics and cases
 
